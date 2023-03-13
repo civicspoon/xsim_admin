@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>X-SIM Admin</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+
+    <!--Convert to an external stylesheet-->
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            background: #141E30;
+            /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #243B55, #141E30);
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #243B55, #141E30);
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            color: white;
+            display: flex;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+
+        .form-signin {
+            width: 100%;
+            max-width: 330px;
+            padding: 15px;
+            margin: auto;
+            color: #212121;
+            border: 4px solid #ff993b;
+            border-radius: 25px;
+        }
+
+        .form-signin .checkbox {
+            font-weight: 400;
+        }
+
+        .form-signin .form-floating:focus-within {
+            z-index: 2;
+        }
+
+        .form-signin input[type="email"] {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .form-signin input[type="password"] {
+            margin-bottom: 10px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+    </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!---fontawsom -->
+</head>
+
+<body class="text-center">
+    <div class="form-signin bg-light">
+        <form id="login" method="get" enctype="application/x-www-form-urlencoded">
+            <img class="mb-4" src="src/xsim_logo.png" alt="" width="172">
+            <h1 class="h3 mb-3 fw-normal">ผู้ดูแลระบบ</h1>
+
+            <div class="form-floating">
+                <input type="text" id="uid" class="form-control"  placeholder="name@example.com">
+                <label for="floatingInput"><i class="fa fa-id-card" aria-hidden="true"></i> รหัสพนักงาน</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" id="password" class="form-control"  placeholder="Password">
+                <label for="floatingPassword"><i class="fa fa-key" aria-hidden="true"></i> รหัสผ่าน</label>
+            </div>
+
+            
+            <button class="w-100 btn btn-lg btn-dark" type="submit">ลงชื่อเข้าใช้งาน</button>
+            <p class="mt-5 mb-3 text-muted">&copy; 2023</p>
+        </form>
+    </div>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous">
+    </script>
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+</body>
+
+</html>
+<script src="index.js"></script>
