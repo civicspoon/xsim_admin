@@ -121,7 +121,7 @@ $DetailQuery = mysqli_query($conn,$detailSQL);
         <div class="col-6">
             <div class="row">
                 <p><strong>รหัสพนักงาน</strong> <?PHP echo $objResult['uid']; ?> <br><strong>ชื่อ</strong> <?PHP echo $objResult['name']; ?>
-            </div> <strong>สังกัด</strong></strong> <?PHP echo $objResult['department']; ?></p>
+             <br><strong>สังกัด</strong></strong> <?PHP echo $objResult['department']; ?></p></div>
         </div>
         <div class="col-6 text-end">
             
@@ -142,7 +142,7 @@ $DetailQuery = mysqli_query($conn,$detailSQL);
        
     </div>
 
-<hr>
+
 
     <div class="row">
         <div class="table-responsive">
