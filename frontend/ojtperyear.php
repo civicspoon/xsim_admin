@@ -1,5 +1,9 @@
 <!doctype html>
 <html lang="en">
+<?php session_start(); 
+ 
+ $dep = "<script>document.write(localStorage.getItem('department_id'))</script>";
+?>
 
 <head>
   <meta charset="utf-8">
@@ -133,6 +137,30 @@
       border-color: transparent;
       box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
     }
+
+    #loader {
+        border: 12px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 12px solid #444444;
+        width: 70px;
+        height: 70px;
+        animation: spin 1s linear infinite;
+    }
+      
+    @keyframes spin {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+      
+    .center {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
   </style>
 </head>
 
@@ -148,7 +176,9 @@
       <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
         <div
           class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h1 class="h2">รายงานการเก็บชั่วโมงประจำปี <?php echo date('Y')+543 ?></h1>
+          <h1 class="h2">รายงานการเก็บชั่วโมงประจำปี  <select id="yearlist">
+            <option value="<?php echo date('Y')+543 ?>"><?php echo date('Y')+543 ?></option>
+          </select></h1>
           
         </div>
 
@@ -157,6 +187,9 @@
     
 
       </main>
+      
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
@@ -183,3 +216,22 @@ function thmonth($m){
 return $month[$m];
 }
 ?>
+
+<div id="loader" class="center"></div>
+
+<img src="https://i.imgur.com/KsQJA8I.png" alt="GeeksforGeeks logo" />
+<script>
+    document.onreadystatechange = function() {
+        if (document.readyState !== "complete") {
+            document.querySelector(
+            "body").style.visibility = "hidden";
+            document.querySelector(
+            "#loader").style.visibility = "visible";
+        } else {
+            document.querySelector(
+            "#loader").style.display = "none";
+            document.querySelector(
+            "body").style.visibility = "visible";
+        }
+    };
+</script>

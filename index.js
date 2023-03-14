@@ -22,6 +22,7 @@ $(document).ready(function(){
                 localStorage.setItem("uid",js.id)
                 localStorage.setItem("name",js.name)
                 localStorage.setItem("department_id",js.department_id)
+                document.cookie = "depid ="+js.department_id
                 location.replace('frontend/index.php')
      }else{
         alert('Username or Password incoorect!')

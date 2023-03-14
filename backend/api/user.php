@@ -41,7 +41,7 @@
   //  echo json_encode($itemCount);
     if($itemCount > 0){
         
-        $employeeArr = array();
+        
         $employeeArr = array();
      //   $employeeArr["itemCount"] = $itemCount;
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){

@@ -15,6 +15,8 @@
     $item->getSingleEmployee();
     if($item->name != null){
         // create array
+        session_start();
+        $_SESSION["depid"]= $item->department_id;
         $emp_arr = array(
             "id" =>  $item->id,
             "name" => $item->name,

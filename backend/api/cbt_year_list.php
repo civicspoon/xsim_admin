@@ -16,9 +16,9 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
   // output data of each row
-  echo "<option selected dsable>เลือกปีที่ต้องการ</option>";
+  echo "<option selected dsable>".date('Y')+543 ."</option>";
   while($row = mysqli_fetch_assoc($result)) {
-    echo "<option value=" . $row["year"] .">".$row["year"]."</option>";
+    echo "<option value=" . $row["year"] .">".(((int) $row["year"])+543)."</option>";
   }
 } else {
   echo "0 results";
