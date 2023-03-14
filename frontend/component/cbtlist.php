@@ -1,11 +1,6 @@
 <?php
 
-if(isset($_GET['year'])){
-    $year = $_GET['year'];
-}
-else{
-    $year = date('Y');
-}
+
 $con = mysqli_connect('localhost', 'root', 'aot#avsec', 'xsim2');
 $perpage = 20;
 if (isset($_GET['page'])) {

@@ -72,6 +72,15 @@
             ค้นหา
           </a>
         </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="uploadexcel.php">
+                <span data-feather="file-text"></span>
+                Upload Excel
+              </a>
+            </li>
+       
+
       </ul>
     </div>
     <hr>

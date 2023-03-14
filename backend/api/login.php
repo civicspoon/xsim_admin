@@ -17,6 +17,7 @@
         // create array
         session_start();
         $_SESSION["depid"]= $item->department_id;
+        $_SESSION["role_id"]= $item->role_id;
         $emp_arr = array(
             "id" =>  $item->id,
             "name" => $item->name,

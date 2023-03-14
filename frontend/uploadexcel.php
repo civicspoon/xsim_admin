@@ -1,26 +1,29 @@
 <!doctype html>
 <html lang="en">
-<?php session_start(); 
- if(isset($_GET['year'])){
-  $year = $_GET['year'];
-}
-else{
-  $year = date('Y');
-}
- $dep = "<script>document.write(localStorage.getItem('department_id'))</script>";
+<?php 
+session_start();
 ?>
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Hugo 0.72.0">
-  <title>X-SIM2 : ADMIN</title>
+  <title>Dashboard Template · Bootstrap</title>
 
   <link rel="canonical" href="https://v5.getbootstrap.com/docs/5.0/examples/dashboard/">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!---fontawsom -->
 
+
+<!-- FontAwesome 6.2.0 CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- (Optional) Use CSS or JS implementation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"
+    integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
@@ -142,37 +145,12 @@ else{
       border-color: transparent;
       box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
     }
-
-    #loader {
-        border: 12px solid #f3f3f3;
-        border-radius: 50%;
-        border-top: 12px solid #444444;
-        width: 70px;
-        height: 70px;
-        animation: spin 1s linear infinite;
-    }
-      
-    @keyframes spin {
-        100% {
-            transform: rotate(360deg);
-        }
-    }
-      
-    .center {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin: auto;
-    }
   </style>
 </head>
 
 <body>
 
 
-  </nav>
 
   <div class="container-fluid">
     <div class="row">
@@ -181,20 +159,15 @@ else{
       <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
         <div
           class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h1 class="h2">รายงานการเก็บชั่วโมงประจำปี <?php echo $year+543; ?></h1> <div>เลือกปีที่ต้องการ <select onchange="getyear()" id="yearlist">
-            <option value="<?php echo date('Y')+543 ?>"><?php echo date('Y')+543 ?></option>
-          </select></div>
+          <h1 class="h2">Dashboard</h1>
           
         </div>
 
 
-        <?php include '../frontend/component/cbtlist.php' ?>
+        <?php include '../frontend/component/uploadexcel.php'; echo $_SESSION['role_id'] ?>
     
 
       </main>
-      
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
@@ -221,38 +194,3 @@ function thmonth($m){
 return $month[$m];
 }
 ?>
-
-<div id="loader" class="center">
-
-<img src="../src/loading.gif"  /></div>
-<script>
-    document.onreadystatechange = async function() {
-        if (document.readyState !== "complete") {
-            document.querySelector(
-            "body").style.visibility = "hidden";
-            document.querySelector(
-            "#loader").style.visibility = "visible";
-        } else {
-            document.querySelector(
-            "#loader").style.display = "none";
-            document.querySelector(
-            "body").style.visibility = "visible";
-
-             let getyear = await fetch('../backend/api/cbt_year_list.php')
-            let txt = await getyear.text()
-            console.log(txt)
-            let yearlist = document.getElementById('yearlist')
-           yearlist.innerHTML = txt
-           
-          }
-        }
-   
-    // $('document').ready(async ()=>{
-      function getyear(){
-        let yearlist = document.getElementById('yearlist').value
-        window.location.replace("ojtperyear.php?year="+yearlist);
-        
-      }
-         
-    // )
-</script>

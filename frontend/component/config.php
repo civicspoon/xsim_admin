@@ -1,6 +1,6 @@
 <?php
 $dbHost = 'localhost';
-$dbName = 'test';
+$dbName = 'xsim2';
 $dbUsername = 'root';
 $dbPassword = 'aot#avsec';
 

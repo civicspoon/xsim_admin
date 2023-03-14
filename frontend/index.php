@@ -152,7 +152,7 @@
 
   <div class="container-fluid">
     <div class="row">
-     <?php include '../frontend/component/sidebar.html' ?>
+     <?php include '../frontend/component/sidebar.php' ?>
 
       <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
         <div

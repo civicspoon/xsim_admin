@@ -1,10 +1,19 @@
+
+
+
+
+
+<!--  -->
+
+
+
 <!DOCTYPE html>  
 <html>  
 <head>  
 <title>Techno Smarter Tutorials</title>
 </head> 
 <body> 
-<form method="post" enctype="multipart/form-data" action="upload.php">
+<form method="post" enctype="multipart/form-data" action="component/upload.php">
 <label>Select CSV File:</label>
 <input type="file" name="file">
 <br>
