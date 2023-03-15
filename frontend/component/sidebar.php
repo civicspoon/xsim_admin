@@ -72,15 +72,19 @@
             ค้นหา
           </a>
         </li>
+<?php
 
-            <li class="nav-item">
+        if($_SESSION['role_id'] == 1 ){
+          echo '   <li class="nav-item">
               <a class="nav-link" href="uploadexcel.php">
                 <span data-feather="file-text"></span>
                 Upload Excel
               </a>
-            </li>
+            </li>';
+        }
+          
        
-
+?>
       </ul>
     </div>
     <hr>

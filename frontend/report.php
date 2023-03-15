@@ -35,7 +35,7 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 
 
 // Table Report
-$detailSQL = "SELECT DAY(`record_date`) as DAYS,MONTH(`record_date`) AS MM ,YEAR(`record_date`)+543 AS YY ,Count(`id`) AS UseTime ,SUM(`image_count`) AS SUMBAG ,SEC_TO_TIME(sum(`time_record`)) AS SUMTIME FROM `CBT` WHERE user_id =  '$emid' AND YEAR(cbt.record_date) =  $year GROUP BY DAY(`record_date`) ORDER BY record_date ;";
+$detailSQL = "SELECT DAY(`record_date`) as DAYS,MONTH(`record_date`) AS MM ,YEAR(`record_date`)+543 AS YY ,Count(`id`) AS UseTime ,SUM(`image_count`) AS SUMBAG ,SEC_TO_TIME(sum(`time_record`)) AS SUMTIME FROM `cbt` WHERE user_id =  '$emid' AND YEAR(cbt.record_date) =  $year GROUP BY DAY(`record_date`) ORDER BY record_date ;";
 $DetailQuery = mysqli_query($conn,$detailSQL);
 
 ?>

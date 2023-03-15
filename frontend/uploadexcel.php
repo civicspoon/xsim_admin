@@ -164,7 +164,7 @@ session_start();
         </div>
 
 
-        <?php include '../frontend/component/uploadexcel.php'; echo $_SESSION['role_id'] ?>
+        <?php include '../frontend/component/uploadexcel.php'; ?>
     
 
       </main>
