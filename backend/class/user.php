@@ -80,7 +80,8 @@ error_reporting(E_ERROR | E_PARSE);
                        AND
                        password = md5(?)
                        AND
-                       role_id != 4
+                       role_id = 1
+                       OR Role_id = 2
                     LIMIT 0,1";
             $stmt = $this->conn->prepare($sqlQuery);
             $stmt->bindParam(1, $this->id);
