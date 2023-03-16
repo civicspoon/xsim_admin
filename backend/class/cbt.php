@@ -13,6 +13,7 @@ class CBT{
     public $id;
     public $limit;
     public $offest;
+    public $uid;
 
   // Db connection
     public function __construct($db){
@@ -45,6 +46,22 @@ class CBT{
         // $this->name = $dataRow['user.name'];
         // $this->sumtime = $dataRow['sumtime'];
         return $stmt;
+    }
+
+    public function duplicate_list(){
+      $sql = "SELECT * FROM cbt WHERE `user_id` = :uid GROUP BY `record_date` HAVING COUNT(`record_date`) > 1 ORDER BY `record_date` DESC;";
+      $stmt = $this->conn->prepare($sql);
+      $stmt->bindParam("uid",$this->uid);
+      $stmt->execute();
+      return $stmt;
+    }
+
+    public function delete_record(){
+      $sql = "DELETE FROM CBT WHERE id = :id" ;
+      $stmt = $this->conn->prepare($sql);
+      $stmt->bindParam("id",$this->uid);
+      $stmt->execute();
+      return $stmt->rowCount();
     }
 
 }

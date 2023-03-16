@@ -21,6 +21,13 @@ LIMIT {$start} , {$perpage} ";
 $query = mysqli_query($con, $sql);
 ?>
 <div class="container">
+<div
+          class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">รายงานการเก็บชั่วโมงประจำปี <?php echo $year+543; ?></h1> <div>เลือกปีที่ต้องการ <select onchange="getyear()" id="yearlist">
+            <option value="<?php echo date('Y')+543 ?>"><?php echo date('Y')+543 ?></option>
+          </select></div>
+          
+        </div>
 <div class="row">
 <div class="col-lg-12">
 
@@ -67,13 +74,13 @@ echo "หน้า".$page."/".$total_page;
 <nav>
 <ul class="pagination  pagination-md">
 <li class="page-item">
-<a class="page-link"  href="ojtperyear.php?page=1" aria-label="Previous">
+<a class="page-link"  href="ojtperyear.php?page=1&pageid=3" aria-label="Previous">
 <span aria-hidden="true">หน้าแรก</span>
 </a>
 </li>
 <?php 
 if($page>1){ ?>
-<li class="page-item"><a class="page-link"  href="ojtperyear.php?page=<?php echo $page-1; ?>" aria-label="nx"><span aria-hidden="true"><<</span></a></li>
+<li class="page-item"><a class="page-link"  href="ojtperyear.php?pageid=3&page=<?php echo $page-1; ?>" aria-label="nx"><span aria-hidden="true"><<</span></a></li>
 
 <?PHP }
 ?>
@@ -81,7 +88,7 @@ if($page>1){ ?>
 $maxpage = 5;
 for($i=$page;$i<=$maxpage+$page;$i++){ 
 if($i<=$total_page){ ?>
-    <li class="page-item <?PHP if($i==$page){echo 'active';} ?>"><a class="page-link"  href="ojtperyear.php?page=<?php echo $i;?>"><?php echo $i; ?></a></li>
+    <li class="page-item <?PHP if($i==$page){echo 'active';} ?>"><a class="page-link"  href="ojtperyear.php?pageid=3&page=<?php echo $i;?>"><?php echo $i; ?></a></li>
     
 
 <?php  }
@@ -91,7 +98,7 @@ if(($total_page-$page)>$maxpage) {
 <li class="page-item"><a class="page-link"  href="ojtperyear.php?page=<?php echo $page+6; ?>" aria-label="nx"><span aria-hidden="true">>></span></a></li>
 <?PHP  } ?>
 <li class="page-item">
-<a class="page-link"  href="ojtperyear.php?page=<?php echo $total_page;?>" aria-label="Next">
+<a class="page-link"  href="ojtperyear.php?pageid=3&page=<?php echo $total_page;?>" aria-label="Next">
 <span aria-hidden="true"></span>หน้าสุดท้าย</span>
 </a>
 </li>
@@ -104,3 +111,21 @@ if(($total_page-$page)>$maxpage) {
 
 
 </div>
+<script>
+
+        $('document').ready(async ()=>{
+         let getyear = await fetch('../backend/api/cbt_year_list.php')
+            let txt = await getyear.text()
+            console.log(txt)
+            let yearlist = document.getElementById('yearlist')
+           yearlist.innerHTML = txt
+        })
+    //
+      function getyear(){
+        let yearlist = document.getElementById('yearlist').value
+        window.location.replace("home.php?pageid=3&year="+yearlist);
+        
+      }
+         
+    // )
+</script>

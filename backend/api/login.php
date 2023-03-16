@@ -15,9 +15,9 @@
     $item->getSingleEmployee();
     if($item->name != null){
         // create array
+        session_destroy();
         session_start();
-        $_SESSION["depid"]= $item->department_id;
-        $_SESSION["role_id"]= $item->role_id;
+       
         $emp_arr = array(
             "id" =>  $item->id,
             "name" => $item->name,
@@ -25,7 +25,12 @@
             "role_id" => $item->role_id
             
         );
-      
+        if($_SESSION["role_id"]==4){
+            echo 0;
+        }
+       $_SESSION["depid"]= $item->department_id;
+        $_SESSION["role_id"]= $item->role_id;
+        
         http_response_code(200);
         echo json_encode($emp_arr);
     }

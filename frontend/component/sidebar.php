@@ -16,7 +16,12 @@
             <i class="fa fa-book" aria-hidden="true"></i> รายงาน
           </a>
         </li>
-
+        <li class="nav-item">
+          <a class="nav-link" href="home.php?pageid=5">
+            <span data-feather="file"></span>
+            Innitial Test
+          </a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="">
             <span data-feather="file"></span>
@@ -24,9 +29,9 @@
           </a>
         </li>
         <li class="nav-item">
-         
-          <a class="nav-link" href="ojtperyear.php">
-            <span data-feather="shopping-cart"></span>
+        
+          <a class="nav-link " href="home.php?pageid=3">
+          
             เก็บชั่วโมงประจำปี  
           </a>
         </li>
@@ -80,7 +85,14 @@
                 <span data-feather="file-text"></span>
                 Upload Excel
               </a>
-            </li>';
+            </li>
+            
+            <li class="nav-item">
+            <a class="nav-link" href="home.php?pageid=4">
+              <span data-feather="file-text"></span>
+              รายการซ้ำ
+            </a>
+          </li>';
         }
           
        
@@ -103,6 +115,15 @@
       data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <input class="form-control form-control-dark w-100" type="text" placeholder="รหัสพนักงาน" aria-label="Search">
-  <button class="btn btn-lg-block text-light"><i class="fa fa-search" aria-hidden="true"></i> ค้นหา</button>
+
+    <input class="form-control  form-control-dark w-30" id="uid" type="text" placeholder="รหัสพนักงาน" aria-label="Search">
+  <button onclick="search()" class="btn btn-lg text-light btn-info m-2 w-50"><i class="fa fa-search" aria-hidden="true"></i> ค้นหา</button>
+  
   </nav>
+
+  <script>
+    function search(){
+      let uid = document.getElementById('uid').value
+      window.location.replace("home.php?pageid=2&uid="+uid)
+    }
+  </script>

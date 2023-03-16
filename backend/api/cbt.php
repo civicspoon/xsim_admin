@@ -37,3 +37,39 @@
 
       
     }
+
+    if(isset($_POST['duplicateuid'])){
+        $log->uid = isset($_POST['duplicateuid']) ? $_POST['duplicateuid'] : die();
+        $stmt = $log->duplicate_list();
+        $countlog = $stmt->rowCount();
+        if($countlog>0){
+            $duplicate = array();
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+                extract($row);
+                $e =array(
+                    "id" => $id,
+                    "user_id"=>$user_id,
+                    "record_date"=>$record_date,
+                    "time_record"=>$time_record
+                );
+                array_push($duplicate,$e);
+            }
+            echo json_encode($duplicate);
+        }
+        else{
+            echo '0';
+        }
+
+    }
+
+    if(isset($_POST['CheckID'])){
+        $id = array();
+        $id = $_POST['CheckID'];
+        $member = count($id);
+        // Loop delete trough array
+        for($i=0;$i<$member;$i++){
+            $log->uid = $id[$i];
+            $stmt = $log->delete_record();
+            echo $stmt; // ++ data = record
+        }
+    }
