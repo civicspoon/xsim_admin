@@ -88,19 +88,27 @@ document.getElementById("form").addEventListener("submit", async function(event)
         console.log(data)
         document.getElementById('res').innerHTML = "<h1><i class='fa fa-trash text-danger' aria-hidden='true'></i></h1> Delete please wait"
       document.getElementById('modalbtn').style.visibility = 'collapse';
-        $('#alertmodal').modal('show')
-        $.post("../backend/api/cbt.php",
-        {
-            CheckID:data
-        },await function (res){
-            //console.log(res)
-            if(res>0){
-                $('#alertmodal').modal('hide')
-                document.getElementById('modalbtn').style.visibility = 'visible';
-                document.getElementById('listduplicate').innerHTML =  "<tr><td colspan='4'> "+res+" Record Deleted</td></tr>"
+
+        if(data.length>0){
+            $('#alertmodal').modal('show')
+            $.post("../backend/api/cbt.php",
+            {
+                CheckID:data
+            },await function (res){
+                //console.log(res)
+                if(res>0){
+                    $('#alertmodal').modal('hide')
+                    document.getElementById('checkAll').checked = false;
+                    document.getElementById('modalbtn').style.visibility = 'visible';
+                    document.getElementById('listduplicate').innerHTML =  "<tr><td colspan='4'> "+res+" Record Deleted</td></tr>"
+                }
             }
+            )
+        }else {
+            document.getElementById('modalbtn').style.visibility = 'visible';
+            document.getElementById('res').innerHTML = "No Data Select"   
+            $('#alertmodal').modal('show')
         }
-        )
 });
 
 
