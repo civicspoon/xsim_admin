@@ -66,10 +66,13 @@
         $id = array();
         $id = $_POST['CheckID'];
         $member = count($id);
+        $countdelete = 0;
         // Loop delete trough array
         for($i=0;$i<$member;$i++){
             $log->uid = $id[$i];
             $stmt = $log->delete_record();
-            echo $stmt; // ++ data = record
-        }
+     
+            $countdelete += (int)$stmt; // ++ data = record
+           
+        } echo $countdelete;
     }

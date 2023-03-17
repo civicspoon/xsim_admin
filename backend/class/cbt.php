@@ -49,7 +49,7 @@ class CBT{
     }
 
     public function duplicate_list(){
-      $sql = "SELECT * FROM cbt WHERE `user_id` = :uid GROUP BY `record_date` HAVING COUNT(`record_date`) > 1 ORDER BY `record_date` DESC;";
+      $sql = "SELECT * FROM cbt WHERE `user_id` = :uid GROUP BY `record_date` HAVING COUNT(`record_date`) > 1 ;";
       $stmt = $this->conn->prepare($sql);
       $stmt->bindParam("uid",$this->uid);
       $stmt->execute();

@@ -5,7 +5,7 @@
         <input style="display: inline-block;" class="form-text "  type="text" name="uid" id="uid_txt">
         <button onclick="search()"  class="btn btn-outline-primary"><i class="fa fa-search" aria-hidden="true"></i> ค้นหา</button> 
 
-        <form action="../backend/api/cbt.php" method="post">
+        <form action="../backend/api/cbt.php" method="post" id="form">
         <p id="name_result"></p>
         <div class="row">
             <div class="col-3"> <input type="checkbox" id="checkAll" > Check All
@@ -35,13 +35,17 @@
 </div>
 
 <script>   
- function search(){
+ async function search(){
       let uid = document.getElementById('uid_txt').value
-      $.post("../backend/api/cbt.php",{
+      console.log('loading');
+      document.getElementById('res').innerHTML = "Loading please wait"
+      document.getElementById('modalbtn').style.visibility = 'collapse';
+        $('#alertmodal').modal('show')
+      let postdata = await $.post("../backend/api/cbt.php",{
         duplicateuid : uid
       },(data)=>{
         
-        let res = JSON.stringify(data)
+        let res =  JSON.stringify(data)
         let respar = JSON.parse(res)
         let res_txt = ''
       if(respar.length>0){
@@ -56,6 +60,9 @@
     }else{
         res_txt = '<tr><td colspan="4">No record found</td></tr>'
     }
+    $('#alertmodal').modal('hide')
+    document.getElementById('modalbtn').style.visibility = 'visible';
+    console.log('done')
     document.getElementById('listduplicate').innerHTML = res_txt
       })
     }
@@ -64,17 +71,66 @@
     $(':checkbox.checkItem').prop('checked', this.checked);    
  });      
 
+
+    // from submit
+
+document.getElementById("form").addEventListener("submit", async function(event){
+        event.preventDefault()
+  
+        //   let fd = new FormData();
+        //   fd.append('CheckID',CheckID)
+        let data = []
+        var names = document.getElementsByName('CheckID[]');
+        for (var i = 0, iLen = names.length; i < iLen; i++) {
+            //alert(names[i].value);
+            data.push(names[i].value)
+        }
+        console.log(data)
+        document.getElementById('res').innerHTML = "<h1><i class='fa fa-trash text-danger' aria-hidden='true'></i></h1> Delete please wait"
+      document.getElementById('modalbtn').style.visibility = 'collapse';
+        $('#alertmodal').modal('show')
+        $.post("../backend/api/cbt.php",
+        {
+            CheckID:data
+        },await function (res){
+            //console.log(res)
+            if(res>0){
+                $('#alertmodal').modal('hide')
+                document.getElementById('modalbtn').style.visibility = 'visible';
+                document.getElementById('listduplicate').innerHTML =  "<tr><td colspan='4'> "+res+" Record Deleted</td></tr>"
+            }
+        }
+        )
+});
+
+
      })
      
 
-     function readval(){
-        var str = "";
-
-$('#ck').each(function() {
-    str += this.checked ? "1," : "0,";
-});
-
-str = str.substr(0, str.length - 1); 
-console.log(str)
-     }
+    
 </script>
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<div class="modal fade" id="alertmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-keyboard="false" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-info-circle" aria-hidden="true"></i> Info</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="res" class="text-center"></p>
+            </div>
+            <div class="modal-footer" id="modalbtn">
+                <button type="button" class="btn btn-secondary btn-block" data-bs-dismiss="modal">Close</button>
+              
+            </div>
+        </div>
+    </div>
+</div>
+
